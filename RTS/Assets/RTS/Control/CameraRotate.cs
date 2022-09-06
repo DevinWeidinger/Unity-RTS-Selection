@@ -1,3 +1,4 @@
+using RTS.Core;
 using UnityEngine;
 
 namespace RTS.Control
@@ -5,9 +6,8 @@ namespace RTS.Control
     public class CameraRotate : MonoBehaviour
     {
         [SerializeField] private float _sensitivity = 200f;
-        private static bool RightClick => Input.GetMouseButton(1);
-        private static bool RightClickDown => Input.GetMouseButtonDown(1);
-        private static bool RightClickUp => Input.GetMouseButtonUp(1);
+        private static bool RotationMod => GameData.Instance.Input.Provider.CameraRotationModifier;
+        private static bool RotationModUp => GameData.Instance.Input.Provider.CameraRotationModifierUp;
         
         private void Update()
         {
@@ -17,15 +17,15 @@ namespace RTS.Control
 
         private void Rotate()
         {
-            if (RightClick == false) return;
+            if (RotationMod == false) return;
             var xRotation = Input.GetAxis("Mouse X") * _sensitivity * Time.deltaTime;
             transform.Rotate(0, xRotation, 0, Space.World);
         }
 
         private static void UpdateCursorVisibility()
         {
-            if (RightClick) Cursor.visible = false;
-            else if (RightClickUp) Cursor.visible = true;
+            if (RotationMod) Cursor.visible = false;
+            else if (RotationModUp) Cursor.visible = true;
         }
     }
 }

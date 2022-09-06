@@ -3216,7 +3216,6 @@ MonoBehaviour:
   _edgeThickness: 0.03
   _sensitivity: 20
   _edgeScrollBounds: {fileID: 994683967}
-  _requireCursorLockToScroll: 1
 --- !u!1818360608 &1463478171
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -3263,7 +3262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anchor: {fileID: 1463478169}
   _sensitivity: 4
-  _zoomProgress: 0
+  _zoomProgress: 1
   fovMax: 90
   fovMin: 70
   rotMin: 25
@@ -3621,8 +3620,8 @@ MonoBehaviour:
     Hold <color=#ffa200>LEFT
     CTRL</color> to <b>Remove</b> from current selection
 
-    Hold <color=#ffa200>RIGHT
-    MOUSE</color> to <b>Rotate</b> camera
+    Hold <color=#ffa200>LEFT
+    ALT</color> to <b>Rotate</b> camera
 
     Hold <color=#ffa200>MIDDLE MOUSE</color>
     to <b>Pan</b> camera
