@@ -12,7 +12,6 @@ namespace RTS.Control
         [SerializeField, Range(0.01f, .25f)] private float _edgeThickness = 0.15f;
         [SerializeField] private float _sensitivity = 1;
         [SerializeField] private RectTransform _edgeScrollBounds = default;
-        [SerializeField] private bool _requireCursorLockToScroll = true;
         private Vector3 InputDirection => new(MoveDirection(GameCursor.NormalizedPosition.x), 0, MoveDirection(GameCursor.NormalizedPosition.y));
         
         private void OnValidate()
@@ -29,7 +28,7 @@ namespace RTS.Control
 
         private void Update()
         {
-            if (_requireCursorLockToScroll && Cursor.lockState == CursorLockMode.None || GameData.Instance.Input.Provider.PanCamera) return;
+            if (Cursor.lockState == CursorLockMode.None || Cursor.visible == false) return;
             var movementDirection = Quaternion.Euler(0, transform.localEulerAngles.y, 0) * InputDirection;
             transform.Translate(movementDirection * _sensitivity * Time.deltaTime, Space.World);
         }
