@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f4b1e8ea8746ac98164fc9857abfb0, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  <Settings>k__BackingField:
+  <Physics>k__BackingField:
     <UnitLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 128
     <GroundLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 64
-  <InputSettings>k__BackingField:
+  <Input>k__BackingField:
     Provider:
-      rid: 1126248624118824960
-  <ColorSettings>k__BackingField:
+      rid: 1126248624118824961
+  <Color>k__BackingField:
     <SelectionColor>k__BackingField: {r: 0.241, g: 0.5846014, b: 1, a: 1}
     <HoverColor>k__BackingField: {r: 0.47500002, g: 0.71314436, b: 1, a: 1}
   references:
     version: 2
     RefIds:
-    - rid: 1126248624118824960
+    - rid: 1126248624118824961
       type: {class: PCInput, ns: RTS.Core, asm: Assembly-CSharp}
       data:
         _panCamera: 2

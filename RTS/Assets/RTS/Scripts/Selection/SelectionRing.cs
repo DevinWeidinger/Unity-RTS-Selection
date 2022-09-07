@@ -41,6 +41,7 @@ namespace RTS.Selection
             var instance = pool.Pool.Get();
             instance.transform.SetParent(transform);
             instance.transform.localPosition = default;
+            instance.transform.localScale = Vector3.one;
             instance.gameObject.SetActive(true);
             return instance;
         }
