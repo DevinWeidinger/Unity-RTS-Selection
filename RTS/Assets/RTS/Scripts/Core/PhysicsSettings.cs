@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RTS.Core
 {
     [Serializable]
-    public class GameSettings : ISerializationCallbackReceiver
+    public class PhysicsSettings : ISerializationCallbackReceiver
     {
         [field:SerializeField] public LayerMask UnitLayer { get; private set; } = default;
         [field:SerializeField] public LayerMask GroundLayer { get; private set; } = default;

@@ -12,7 +12,7 @@ namespace RTS.Control
         private Vector3 _mousePosition;
 
         private static IInputProvider Provider => GameData.Instance.Input.Provider;
-        private LayerMask Ground => GameData.Instance.Settings.GroundLayer;
+        private LayerMask Ground => GameData.Instance.Physics.GroundLayer;
         private static Camera Camera => Provider.Camera;
         private static bool PanCamera => Provider.PanCamera;
         private static bool PanCameraDown => Provider.PanCameraDown;

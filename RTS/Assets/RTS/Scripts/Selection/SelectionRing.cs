@@ -1,44 +1,55 @@
+﻿using UnityEngine;
+using RTS.Utility;
+
 namespace RTS.Selection
 {
     public class SelectionRing : SelectionListener
     {
-        // private SelectionRing _selectionRing = null;
-
+        [SerializeField] private PoolData _selectionPool = default;
+        [SerializeField] private PoolData _hoverPool = default;
+        
+        private GameObject _selection = default;
+        private GameObject _hover = default;
+        
         protected override void OnSelect()
         {
-            // UnitMediator.HandleCommandPointVisibility(true);
-            // GetRing().SetSelectionVisibility(true);
+            if (_selection != null) return;
+            if (_hover) Unload(_hoverPool, ref _hover);
+            _selection = Load(_selectionPool);
         }
 
         protected override void OnDeselect()
         {
-            // UnitMediator.HandleCommandPointVisibility(false);
-            // GetRing().SetSelectionVisibility(false);
-            // if (_selectionRing.Visible == false)
-            //     ReturnRing();
+            if (_selection == null) return;
+            Unload(_selectionPool, ref _selection);
         }
 
         protected override void OnHoverEnter()
         {
-            // GetRing().SetHoverVisibility(true);
+            if (_selection != null || _hover != null) return;
+            _hover = Load(_hoverPool);
         }
 
         protected override void OnHoverExit()
         {
-            // GetRing().SetHoverVisibility(false);
-            // if(_selectionRing.Visible == false)
-            // ReturnRing();
+            if (_hover == null) return;
+            Unload(_hoverPool, ref _hover);
         }
-        
-        // private void ReturnRing()
-        // {
-        //     if (_selectionRing != null)
-        //     {
-        //         _selectionRing.Clear();
-        //         _selectionRing.gameObject.SetActive(false);
-        //         // SelectionRingPool.Instance.Release(_selectionRing);
-        //         _selectionRing = null;
-        //     }
-        // }
+
+        private GameObject Load(PoolData pool)
+        {
+            var instance = pool.Pool.Get();
+            instance.transform.SetParent(transform);
+            instance.transform.localPosition = default;
+            instance.gameObject.SetActive(true);
+            return instance;
+        }
+
+        private static void Unload(PoolData pool, ref GameObject instance)
+        {
+            if(instance == null) return;
+            pool.Pool.Release(instance);
+            instance = null;
+        }
     }
 }

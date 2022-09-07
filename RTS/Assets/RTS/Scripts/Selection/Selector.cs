@@ -67,8 +67,8 @@ namespace RTS.Selection
             var start = ray.origin;
             var end = ray.origin + ray.direction * distance;
             Debug.DrawRay(ray.origin, ray.direction * distance, Color.yellow, 3f);
-            return _clickRadius > 0 ? Physics.CapsuleCastAll(start, end, _clickRadius, ray.direction, Mathf.Infinity, GameData.Instance.Settings.UnitLayer).Where(hit => hit.rigidbody != null) 
-                : Physics.RaycastAll(start, end, Mathf.Infinity, GameData.Instance.Settings.UnitLayer).Where(hit => hit.rigidbody != null);
+            return _clickRadius > 0 ? Physics.CapsuleCastAll(start, end, _clickRadius, ray.direction, Mathf.Infinity, GameData.Instance.Physics.UnitLayer).Where(hit => hit.rigidbody != null) 
+                : Physics.RaycastAll(start, end, Mathf.Infinity, GameData.Instance.Physics.UnitLayer).Where(hit => hit.rigidbody != null);
         }
 
         private IEnumerator BoxSelect()

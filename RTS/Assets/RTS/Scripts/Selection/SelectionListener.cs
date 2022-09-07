@@ -7,7 +7,7 @@ namespace RTS.Selection
     {
         protected SelectionReceiver _receiver = default;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _receiver = GetComponent<SelectionReceiver>();
         }

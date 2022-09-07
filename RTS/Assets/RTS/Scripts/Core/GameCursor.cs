@@ -7,16 +7,16 @@ namespace RTS.Core
     public class GameCursor
     {
         public static bool CursorVisible => Cursor.visible;
-        public static Vector3 NormalizedPosition => new(Mathf.Clamp01(Input.mousePosition.x / Screen.width), Mathf.Clamp01(Input.mousePosition.y / Screen.height), 0);
+        public static Vector3 NormalizedPosition => new(Mathf.Clamp01(UnityEngine.Input.mousePosition.x / Screen.width), Mathf.Clamp01(UnityEngine.Input.mousePosition.y / Screen.height), 0);
         private static Ray CursorRay => GameData.Instance.Input.Provider.Camera.ViewportPointToRay(NormalizedPosition);
         private static Camera Camera => GameData.Instance.Input.Provider.Camera;
-        private static LayerMask GroundLayer => GameData.Instance.Settings.GroundLayer;
-        private static LayerMask UnitLayer => GameData.Instance.Settings.UnitLayer;
+        private static LayerMask GroundLayer => GameData.Instance.Physics.GroundLayer;
+        private static LayerMask UnitLayer => GameData.Instance.Physics.UnitLayer;
     
         public static bool TryGetSelectable(out ISelectable selectable)
         {
             selectable = null;
-            var rayHit = Physics.Raycast(CursorRay, out var hitInfo, Camera.farClipPlane, UnitLayer, QueryTriggerInteraction.Collide);
+            var rayHit = UnityEngine.Physics.Raycast(CursorRay, out var hitInfo, Camera.farClipPlane, UnitLayer, QueryTriggerInteraction.Collide);
             if (rayHit && hitInfo.rigidbody) 
                 selectable = hitInfo.rigidbody.GetComponent<ISelectable>();
 
@@ -37,7 +37,7 @@ namespace RTS.Core
         private static bool GetGroundPoint(out Vector3 location)
         {
             location = Vector3.zero;
-            var rayHit = Physics.Raycast(CursorRay, out var hitInfo, Camera.farClipPlane, GroundLayer, QueryTriggerInteraction.Ignore);
+            var rayHit = UnityEngine.Physics.Raycast(CursorRay, out var hitInfo, Camera.farClipPlane, GroundLayer, QueryTriggerInteraction.Ignore);
             if (rayHit) location = hitInfo.point;
             return rayHit;
         }

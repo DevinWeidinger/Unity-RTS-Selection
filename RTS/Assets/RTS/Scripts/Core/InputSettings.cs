@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 namespace RTS.Core
 {
     [Serializable]
-    public class GameInput
+    public class InputSettings
     {
         [SerializeReference] public IInputProvider Provider = new PCInput();
 
@@ -45,17 +45,17 @@ namespace RTS.Core
         [SerializeField] private KeyCode _cameraRotationModifier = KeyCode.LeftAlt;
 
         public Camera Camera => Camera.main;
-        public bool PanCamera => Input.GetMouseButton((int)_panCamera);
-        public bool PanCameraDown => Input.GetMouseButtonDown((int)_panCamera);
-        public bool PanCameraUp => Input.GetMouseButtonUp((int)_panCamera);
-        public bool UnitSelectionDown => Input.GetMouseButtonDown((int) _unitSelection);
-        public bool UnitSelectionUp => Input.GetMouseButtonUp((int) _unitSelection);
-        public bool UnitSelection => Input.GetMouseButton((int) _unitSelection);
-        public bool UnitInteractionDown => Input.GetMouseButtonDown((int) _unitInteraction);
-        public bool AdditiveModifier => Input.GetKey(_additiveModifier);
-        public bool SubtractiveModifier => Input.GetKey(_subtractiveModifier);
-        public bool CameraRotationModifier => Input.GetKey(_cameraRotationModifier);
-        public bool CameraRotationModifierUp => Input.GetKeyUp(_cameraRotationModifier);
+        public bool PanCamera => UnityEngine.Input.GetMouseButton((int)_panCamera);
+        public bool PanCameraDown => UnityEngine.Input.GetMouseButtonDown((int)_panCamera);
+        public bool PanCameraUp => UnityEngine.Input.GetMouseButtonUp((int)_panCamera);
+        public bool UnitSelectionDown => UnityEngine.Input.GetMouseButtonDown((int) _unitSelection);
+        public bool UnitSelectionUp => UnityEngine.Input.GetMouseButtonUp((int) _unitSelection);
+        public bool UnitSelection => UnityEngine.Input.GetMouseButton((int) _unitSelection);
+        public bool UnitInteractionDown => UnityEngine.Input.GetMouseButtonDown((int) _unitInteraction);
+        public bool AdditiveModifier => UnityEngine.Input.GetKey(_additiveModifier);
+        public bool SubtractiveModifier => UnityEngine.Input.GetKey(_subtractiveModifier);
+        public bool CameraRotationModifier => UnityEngine.Input.GetKey(_cameraRotationModifier);
+        public bool CameraRotationModifierUp => UnityEngine.Input.GetKeyUp(_cameraRotationModifier);
 
     }
 }
