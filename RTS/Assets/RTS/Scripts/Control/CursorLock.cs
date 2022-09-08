@@ -24,7 +24,7 @@ namespace RTS.Control
         {
             if (Input.GetKeyDown(KeyCode.Escape) || GameData.Instance.Input.Provider.PanCamera)
                 Cursor.lockState = CursorLockMode.None;
-            else if (Input.GetMouseButtonDown(0))
+            else if (Input.GetMouseButtonDown(0) || GameData.Instance.Input.Provider.PanCameraUp)
                 Cursor.lockState = CursorLockMode.Confined;
 
             if(_lockedText)

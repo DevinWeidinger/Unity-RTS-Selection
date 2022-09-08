@@ -15,7 +15,9 @@ namespace RTS.Selection
         {
             _defaultMaterial = _meshRenderer.sharedMaterial;
             _selectionMaterial = new Material(_meshRenderer.material) { color = _colorSettings.SelectionColor };
+            _selectionMaterial.shader = Shader.Find("Universal Render Pipeline/Unlit");
             _hoverMaterial = new Material(_meshRenderer.material) { color = _colorSettings.HoverColor };
+            _hoverMaterial.shader = Shader.Find("Universal Render Pipeline/Unlit");
         }
         
         protected override void OnSelect() => _meshRenderer.material = _selectionMaterial;
